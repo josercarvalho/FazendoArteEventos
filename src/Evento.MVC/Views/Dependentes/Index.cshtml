@@ -1,0 +1,137 @@
+﻿@model IEnumerable<Evento.Domain.Entity.Dependente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Escola)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanoSaude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GrupoSanguineo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmergenciaHospital)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoneMedico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RestricaoMedicamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualMedicamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RestricaoAlimentar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualAlimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PiscinaRestricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutorizaPasseio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Escola)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanoSaude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GrupoSanguineo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmergenciaHospital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoneMedico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestricaoMedicamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualMedicamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestricaoAlimentar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualAlimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PiscinaRestricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AutorizaPasseio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Bairro)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DependenteId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DependenteId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.DependenteId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

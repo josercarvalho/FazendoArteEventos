@@ -1,0 +1,83 @@
+﻿@model Evento.Domain.Entity.Cliente
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Clientes</h1>
+            </div>
+            <div class="col-sm-6 col-sm-3">
+                <div class="float-sm-right">
+                    @*<a class="btn btn-outline-success fa fa-plus" asp-action="Create" title="Novo Cliente"></a>*@
+                    <a class="btn btn-outline-secondary fa fa-reply" asp-controller="Clientes" asp-action="Index" title="Voltar a Tela Inicial"></a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+                    <div class="nav nav-tabs nav-fill nav-pills mb-3" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Dados do Cliente</a>
+                        <a class="nav-item nav-link disabled" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Dependentes</a>
+                    </div>
+                </nav>
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <partial name="_AddCliente" />
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        @*<div id="divDependente" style="display:none" disabled="disabled">
+                            <partial name="_Dependentes" />
+                        </div>
+                        <partial name="_indexDepend" />*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/views/Cliente/create.js"></script>
+
+    <script type="text/javascript">
+
+        //Bind City dropdownlist
+        $("#EstadoId").change(function () {
+            var estadoId = $("#EstadoId").val();
+            
+            $.ajax({
+                type: "GET",
+                url: "/Clientes/GetCityList",
+                data: { id: estadoId },
+                success: function (result) {
+                    var item = "";
+                    $("#CidadeId").empty();
+                    item = "<option value='0'>Selecione a Cidade ...</option>";
+                    $(result).each(function () {
+                        //bootbox.alert(this.value + " - " + this.text);
+                        item += '<option value="' + this.value + '">' + this.text + '</option>'
+                    });
+                    $("#CidadeId").html(item);
+                },
+                error: function () {
+                    bootbox.alert("Erro ao tentar carregar cidades!");
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,125 @@
+﻿@model Evento.MVC.Models.DependentesViewModel
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Dados do Dependente</h3>
+    </div>
+    <form asp-controller="Clientes" asp-action="Cadastrar" id="formDados"
+          data-ajax="true"
+          data-ajax-method="POST"
+          data-ajax-mode="replace"
+          data-ajax-update="#ajaxresult"
+          data-ajax-success="Success"
+          data-ajax-failure="Failure"
+          data-ajax-complete="adicionaDependente">
+        <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DependenteId" />
+            <input type="hidden" asp-for="ClienteId" class="cliente-id" />
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input asp-for="Nome" class="form-control" autofocus="autofocus" placeholder="Nome Completo" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <input asp-for="DataNascimento" type="text" class="form-control nascimento" placeholder="Dt.Nasc." />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <input asp-for="Idade" class="form-control" placeholder="Idade" />
+                    <span asp-validation-for="Idade" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <select asp-for="Parente" class="form-control" asp-items="Html.GetEnumSelectList<Parente>()"></select>
+                    <span asp-validation-for="Parente" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <input asp-for="Escola" class="form-control" placeholder="Escola" />
+                    <span asp-validation-for="Escola" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col">
+                    <input asp-for="PlanoSaude" class="form-control" placeholder="P. Saúde" />
+                    <span asp-validation-for="PlanoSaude" class="text-danger"></span>
+                </div>
+                <div class="form-group col">
+                    <input asp-for="GrupoSanguineo" class="form-control" placeholder="Tp. Sanque" />
+                    <span asp-validation-for="GrupoSanguineo" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <input asp-for="EmergenciaHospital" class="form-control" placeholder="Hospital de Emergência" />
+                    <span asp-validation-for="EmergenciaHospital" class="text-danger"></span>
+                </div>
+                <div class="form-group col-3">
+                    <input asp-for="Medico" class="form-control" placeholder="Médico" />
+                    <span asp-validation-for="Medico" class="text-danger"></span>
+                </div>
+                <div class="form-group col">
+                    <input asp-for="FoneMedico" class="form-control telefone" placeholder="Fone Médico" />
+                    <span asp-validation-for="FoneMedico" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <input type="checkbox" asp-for="RestricaoMedicamento" id="RestricaoMedicamento" >
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" asp-for="QualMedicamento" placeholder="Restrição Medicamento?">
+                    </div>
+                    <span for="RestricaoMedicamento" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <input type="checkbox" asp-for="RestricaoAlimentar" id="RestricaoAlimentar">
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" asp-for="QualAlimento" placeholder="Retrição Alimentar">
+                    </div>
+                    <span for="RestricaoAlimentar" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <input type="checkbox" asp-for="PiscinaRestricao" id="PiscinaRestricao">
+                            </span>
+                        </div>
+                        <input type="text" class="form-control disabled" for="PiscinaRestricao" placeholder="Restrição Piscina?" disabled>
+                    </div>
+                    <span for="PiscinaRestricao" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <input type="checkbox" asp-for="AutorizaPasseio" id="AutorizaPasseio">
+                            </span>
+                        </div>
+                        <input type="text" class="form-control disabled" for="AutorizaPasseio" placeholder="Autoriza Passeio?" disabled>
+                    </div>
+                    <span for="AutorizaPasseio" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <input asp-for="Observacao" class="form-control" placeholder="Observação" />
+                    <span asp-validation-for="Observacao" class="text-danger"></span>
+                </div>
+            </div>
+            @*<hr />*@
+            <div class="card-tools">
+                <div class="form-group">
+                    <button type="submit" id="salvar" class="btn btn-outline-success" @*onclick="Cadastrar()"*@> Salvar </button>
+                    <button type="button" id="fechar" class="btn btn-outline-secondary" onclick="adicionaDependente()"> Fechar </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

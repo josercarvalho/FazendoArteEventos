@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Evento.Domain.Entity.Dependente>
+
+<div class="card card-outline">
+    <div class="card-header">
+        <h3 class="card-title">Dados do Dependente</h3>
+        <div class="card-tools">
+            <button id="btn-dependente" class="btn btn-outline-success btn-dependente" title="Novo Dependente">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="ajaxresult">
+            @await Html.PartialAsync("_TableView", Model)
+        </div>
+    </div>
+    <div class="card-tools">
+        <div class="form-group text-center">
+            @*<button type="submit" class="btn btn-outline-primary"> Salvar </button>*@
+            <a class="btn btn-outline-secondary text-center" asp-action="Index"> Voltar </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,191 @@
+﻿@model IEnumerable<Evento.Domain.Entity.Eventos>
+
+@{
+    ViewData["Title"] = "Eventos";
+}
+
+<div class="bb-alert alert alert-info" style="display: none;">
+    <span>Os exemplos preencher esse alerta com conteúdo fictício</span>
+</div>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Eventos</h1>
+            </div>
+            <div class="col-sm-6">
+                <div class="btn-group float-sm-right">
+                    <a class="btn btn-outline-success fa fa-plus" asp-action="Create" title="Novo Evento"></a>
+                    <a class="btn btn-outline-secondary fa fa-reply" asp-controller="Home" asp-action="Index" title="Voltar a Tela Inicial"></a>
+                </div>                
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card card-blue card-outline">
+        <div class="card-header">
+            <h3 class="card-title">Listagem de Eventos</h3>
+
+            <div class="card-tools"></div>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover" id="eventoTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Local)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Responsavel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FoneResponsavel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DataIni)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DataFim)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Ativo)
+                        </th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Local)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Responsavel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FoneResponsavel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataIni)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataFim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Ativo)
+                            </td>
+                            <td class="mnuTable">
+                                <div class="btn-group btn-group-table">
+                                    <a class="btn btn-outline-secondary fa fa-pencil" asp-action="Edit" asp-route-id="@item.EventoId" title="Editar"></a>
+                                    @*<button class="btn btn-outline-secondary btn-dependentes" data-nome="@item.Nome" data-id="@item.EventoId" title="Dependentes de @item.Nome">
+                                            <i class="fa fa-child"></i>
+                                        </button>*@
+                                    <button class="btn btn-outline-secondary btn-delete" data-nome="@item.Nome" data-id="@item.EventoId" title="Excluir @item.Nome">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+
+
+<link href="~/lib/jquery-DataTables/css/datatables.min.css" rel="stylesheet" />
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/lib/jquery-DataTables/js/datatables.min.js"></script>
+    @*<script src="~/lib/jquery-DataTables/js/datatables_pt-br.js"></script>*@
+    <script type="text/javascript">
+
+        function activatejQueryTable() {
+            $("#eventoTable").DataTable({
+                "language": {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                }
+            });
+        }
+
+        $(function () {
+            activatejQueryTable();
+            Example.init({ "selector": ".bb-alert" });
+        });
+
+        function Refresh() { location.reload(true); };
+
+        $(document).ready(function () {
+            $(".btn-delete").click(function (e) {
+                e.preventDefault();
+                var itemId = $(this).data('id');
+                var nome = $(this).data("nome");
+                bootbox.confirm("Tem certeza que deseja EXCLUIR " + nome + " ?",
+                    function (result) {
+                        if (result) {
+                            excluicliente(itemId);
+                            setTimeout("Refresh()", 3000);
+                        }
+                    });
+            });
+
+            var excluicliente = function (id) {
+                var strUrl = "/Eventos/DeleteEvento";
+                $.post(strUrl, { id: id }, function (data) {
+                    Example.show(data);
+                }, "json");
+            };
+
+            //$(".btn-dependentes").click(function (e) {
+            //    e.preventDefault();
+            //    var itemId = $(this).data('id');
+            //    var nome = $(this).data("nome");
+            //    bootbox.alert("Mostrar os dependentes de " + nome + "!")
+            //});
+        });
+    </script>
+}

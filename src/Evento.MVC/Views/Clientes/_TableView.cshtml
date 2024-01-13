@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Evento.Domain.Entity.Dependente>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Data nascimento</th>
+            <th>Parentesco</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody id="tabelaDados">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DependenteId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parente)
+                </td>
+                <td class="mnuTable">
+                    <div class="btn-group btn-group-table">
+                        @*<button class="btn btn-default fa fa-folder-open" onclick="Editar(@item.DependenteId)"> </button>*@
+                        <a class="btn btn-default fa fa-folder-open" data-ajax="true"
+                           data-ajax-method="GET"
+                           data-ajax-mode="replace"
+                           data-ajax-update="#divDependente"
+                           data-ajax-complete="adicionaDependente"
+                           href="/Clientes/Editar/@item.DependenteId"></a>
+                        <button class="btn btn-default fa fa-trash" onclick="Deletar(@item.DependenteId)"> </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

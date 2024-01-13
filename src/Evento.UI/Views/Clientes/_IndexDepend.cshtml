@@ -1,0 +1,41 @@
+﻿@*@model IEnumerable<Evento.Domain.Entity.Dependente>*@
+
+<p>
+    <button class="btn btn-outline-success btn-dependente" id="btn-dependente"><i class="fa fa-plus" aria-hidden="true"></i> Novo Dependente</button>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Data nascimento</th>
+            <th>Parentesco</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tabelaDados">
+        @*@foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(modelItem => item.DependenteId)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataNascimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Parente)
+                    </td>
+                    <td>
+                        <a class="btn btn-default glyphicon glyphicon-folder-open" asp-action="Edit" asp-route-id="@item.DependenteId"> </a> |
+                        <a class="btn btn-default glyphicon glyphicon-trash" asp-action="Delete" asp-route-id="@item.DependenteId"> </a>
+                    </td>
+                </tr>
+
+            }*@
+    </tbody>
+</table>

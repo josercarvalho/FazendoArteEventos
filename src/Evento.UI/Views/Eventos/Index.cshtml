@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Evento.Domain.Entity.Eventos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Local)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Responsavel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoneResponsavel)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.PeriodoEvento)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Horarios)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorSocio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorNaoSocio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FaixaEtaria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Local)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Responsavel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoneResponsavel)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.PeriodoEvento)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Horarios)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorSocio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorNaoSocio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FaixaEtaria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EventoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EventoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EventoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

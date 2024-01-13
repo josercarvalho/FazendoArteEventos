@@ -1,0 +1,81 @@
+﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="brand-link">
+        <img src="~/dist/img/AdminLTELogo.png" alt="FazendoArte Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Fazendo Arte</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="~/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">@User.Identity.Name</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+                <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                <li class="nav-item has-treeview">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-item active">
+                        <i class="nav-icon fa fa-home"> </i>
+                        <span>HOME</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-life-saver"></i>
+                        <span>Cadastros</span>
+                        <i class="right fa fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Categorias" asp-action="Index" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Categorias</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Eventos" asp-action="Index" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Eventos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Clientes" asp-action="Index" class="nav-link">
+                                <i class="fa fa-circle nav-icon"></i>
+                                <p>Clientes</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-header">INSCRIÇÕES</li>
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Inscricoes" asp-action="Index" class="nav-link">
+                        <i class="nav-icon fa fa-th"></i>
+                        <p>
+                            Inscrições
+                            <span class="right badge badge-danger">Eventos</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">ADMIN</li>
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="#" asp-action="#" class="nav-link">
+                        <i class="nav-icon fa fa-user-circle-o"></i>
+                        <p>
+                            Usuários
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

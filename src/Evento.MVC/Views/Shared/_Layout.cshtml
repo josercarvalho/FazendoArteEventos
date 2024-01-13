@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] | Eventos</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+        <link href="~/dist/css/adminlte.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+        <link href="~/dist/css/adminlte.min.css" rel="stylesheet" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <partial name="_TopMenu" />
+        @*<partial name="_LoginPartial" />*@
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <partial name="_LeftMenu" />
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <!-- /.content-wrapper -->
+
+        <partial name="_CookieConsentPartial" />
+
+        <footer class="main-footer">
+            <strong>&copy; @DateTime.Now.Year - <a href="https://www.facebook.com/JCarvalhoInformatica" target="_blanck" title="JCarvalho TI">JCarvalho TI</a></strong> | Todos os direitos reservados.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Versão</b> 1.0.0
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/dist/js/adminlte.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+        <script src="~/dist/js/adminlte.min.js"></script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/dist/js/demo.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    @*<script>
+            $.widget.bridge('uibutton', $.ui.button)
+        </script>*@
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

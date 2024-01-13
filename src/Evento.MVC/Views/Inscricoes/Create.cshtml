@@ -1,0 +1,108 @@
+﻿@model Evento.Domain.Entity.Inscricao
+
+@{
+    ViewData["Title"] = "Inscrições";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Inscrições</h1>
+            </div>
+            <div class="col-sm-6 col-sm-3">
+                <div class="btn-group float-sm-right">
+                    <a class="btn btn-outline-success fa fa-plus" asp-action="Create" title="Nova Inscrição"></a>
+                    <a class="btn btn-outline-secondary fa fa-reply" asp-controller="Home" asp-action="Index" title="Voltar a Tela Inicial"></a>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Title</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FicouSabendo" class="control-label"></label>
+                        <input asp-for="FicouSabendo" class="form-control" />
+                        <span asp-validation-for="FicouSabendo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Socio" /> @Html.DisplayNameFor(model => model.Socio)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Matricula" class="control-label"></label>
+                        <input asp-for="Matricula" class="form-control" />
+                        <span asp-validation-for="Matricula" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Valor" class="control-label"></label>
+                        <input asp-for="Valor" class="form-control" />
+                        <span asp-validation-for="Valor" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Periodo" class="control-label"></label>
+                        <select asp-for="Periodo" class="form-control"></select>
+                        <span asp-validation-for="Periodo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ValorPago" class="control-label"></label>
+                        <input asp-for="ValorPago" class="form-control" />
+                        <span asp-validation-for="ValorPago" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EventoId" class="control-label"></label>
+                        <select asp-for="EventoId" class="form-control" asp-items="ViewBag.EventoId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ClienteId" class="control-label"></label>
+                        <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-outline-primary" />
+                <a class="btn btn-outline-secondary" asp-action="Index"> Voltar</a>
+            </div>
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
